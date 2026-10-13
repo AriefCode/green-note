@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Warna dari grand design Figma (frame Selamat Datang) -->
+    <color name="green_note_primary">#9F4211</color>
+    <color name="green_note_secondary">#381742</color>
+    <color name="green_note_background">#FFF8F1</color>
+    <color name="green_note_sand">#FAEDD1</color>
+    <color name="green_note_text_primary">#20012B</color>
+    <color name="green_note_text_secondary">#4C444D</color>
+</resources>
