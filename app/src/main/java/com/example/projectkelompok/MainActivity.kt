@@ -8,9 +8,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.projectkelompok.databinding.ActivityMainBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+// MainActivity sekarang jadi "rumah" bottom navigation.
+// Isi halaman (Beranda, Koleksi, Catat, Profil) ada di Fragment masing-masing.
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding;
 
@@ -21,38 +24,55 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        setContentView(R.layout.activity_main)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            // padding bawah = 0, inset bawah diurus sendiri oleh BottomNavigationView
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
             insets
         }
 
         // pasang Toolbar sebagai action bar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Green Note"
+            title = "Beranda"
             subtitle = "Catatan flora di sekitarmu"
         }
 
-        // ambil username yang disimpan waktu login
-        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
-        val tampungNama = sharedPref.getString("username", "")
-
-        binding.namaSaya.text = "Halo, $tampungNama"
-
-        binding.btnKembali.setOnClickListener {
-            finish()
+        // fragment awal hanya dipasang sekali (bukan setiap layar diputar)
+        if (savedInstanceState == null) {
+            replaceFragment(BerandaFragment(), "Beranda")
         }
 
-        binding.btnDetail.setOnClickListener {
-            val intent = Intent(this@MainActivity, DetailActivity::class.java )
-            startActivity(intent)
+        // dipanggil setiap kali salah satu tab bottom nav diklik
+        binding.bottomNavView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.nav_beranda -> {
+                    replaceFragment(BerandaFragment(), "Beranda")
+                    true
+                }
+                R.id.nav_koleksi -> {
+                    replaceFragment(KoleksiFragment(), "Koleksi")
+                    true
+                }
+                R.id.nav_catat -> {
+                    replaceFragment(CatatFragment(), "Catat")
+                    true
+                }
+                R.id.nav_profil -> {
+                    replaceFragment(ProfilFragment(), "Profil")
+                    true
+                }
+                else -> false
+            }
         }
+    }
 
-        binding.btnLogout.setOnClickListener {
-            logout()
-        }
+    // ganti isi fragmentContainer dengan fragment baru + ganti judul Toolbar
+    private fun replaceFragment(fragment: Fragment, judul: String) {
+        supportFragmentManager.beginTransaction()
+            .replace(binding.fragmentContainer.id, fragment)
+            .commit()
+        supportActionBar?.title = judul
     }
 
     // tampilkan menu (titik tiga) di Toolbar
@@ -72,8 +92,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // satu fungsi logout, dipakai tombol Log Out dan menu Toolbar
-    private fun logout() {
+    // satu fungsi logout, dipakai menu Toolbar, BerandaFragment, dan ProfilFragment
+    // (tidak private supaya bisa dipanggil dari fragment)
+    fun logout() {
         MaterialAlertDialogBuilder(this)
             .setTitle("Konfirmasi")
             .setMessage("Apakah Anda yakin ingin log out?")
