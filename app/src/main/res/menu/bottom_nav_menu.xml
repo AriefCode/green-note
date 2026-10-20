@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Menu bottom navigation, label mengikuti desain Green Note di Figma -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_beranda"
+        android:icon="@drawable/ic_nav_beranda"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/nav_koleksi"
+        android:icon="@drawable/ic_nav_koleksi"
+        android:title="Koleksi" />
+
+    <item
+        android:id="@+id/nav_catat"
+        android:icon="@drawable/ic_nav_catat"
+        android:title="Catat" />
+
+    <item
+        android:id="@+id/nav_profil"
+        android:icon="@drawable/ic_nav_profil"
+        android:title="Profil" />
+</menu>
