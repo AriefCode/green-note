@@ -101,10 +101,11 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Ya"){ dialog, _ ->
                 dialog.dismiss()
 
-                // hapus semua data login di SharedPreferences
+                // hapus status login saja, akun hasil Register (reg_*) tetap disimpan
                 val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
                 val editor = sharedPref.edit()
-                editor.clear()
+                editor.remove("isLogin")
+                editor.remove("username")
                 editor.apply()
 
                 // pindah ke Login, finish() supaya tombol back tidak balik ke sini
