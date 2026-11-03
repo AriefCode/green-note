@@ -13,14 +13,21 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/green_note_primary"
-        android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+        android:background="@color/green_note_background"
+        android:elevation="2dp"
+        android:theme="@style/ThemeOverlay.Material3.ActionBar"
+        app:contentInsetStart="20dp"
+        app:logo="@drawable/logo_toolbar"
+        app:logoDescription="Logo Green Note"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/ThemeOverlay.Material3.Light"
-        app:subtitleTextColor="@color/white"
-        app:titleTextColor="@color/white" />
+        app:subtitleTextAppearance="@style/TextAppearance.GreenNote.ToolbarSubtitle"
+        app:subtitleTextColor="@color/green_note_primary"
+        app:titleMarginStart="8dp"
+        app:titleTextAppearance="@style/TextAppearance.GreenNote.ToolbarTitle"
+        app:titleTextColor="@color/green_note_secondary" />
 
     <!-- wadah fragment, isinya diganti lewat replaceFragment() -->
     <FrameLayout
@@ -37,7 +44,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        app:itemActiveIndicatorStyle="@style/Widget.GreenNote.NavIndicator"
         app:itemIconTint="@color/bottom_nav_item"
+        app:itemTextAppearanceActive="@style/TextAppearance.GreenNote.NavLabel"
+        app:itemTextAppearanceInactive="@style/TextAppearance.GreenNote.NavLabel"
         app:itemTextColor="@color/bottom_nav_item"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
