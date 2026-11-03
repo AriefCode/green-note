@@ -8,21 +8,24 @@ Project ini adalah tugas praktikum Pemrograman Mobile.
 ## Fitur
 
 - **Splash screen** — menampilkan logo, nama aplikasi, dan tagline selama 2 detik.
-- **Login** — pengecekan username dan password terhadap akun demo.
+- **Register** — daftar akun baru (nama, username, password, konfirmasi password). Akun disimpan di SharedPreferences.
+- **Login** — pengecekan username dan password terhadap akun demo dan akun hasil Register.
 - **Ingat status login** — status disimpan di SharedPreferences, jadi saat aplikasi dibuka lagi langsung masuk ke halaman utama.
 - **Toolbar** — judul, subjudul, dan menu Logout di halaman utama; tombol back di halaman detail.
-- **Logout** — dialog konfirmasi, lalu data login dihapus dan kembali ke halaman login.
+- **Logout** — dialog konfirmasi, lalu status login dihapus dan kembali ke halaman login. Akun hasil Register tetap tersimpan.
 
 ## Alur aplikasi
 
 ```
 SplashScreenActivity (LAUNCHER) → tunggu 2 detik → cek isLogin
    ├─ true  → MainActivity
-   └─ false → LoginActivity → login sukses → MainActivity
+   └─ false → WelcomeActivity
+                 ├─ Mulai Menjelajah → RegisterActivity → daftar sukses → LoginActivity
+                 └─ Masuk → LoginActivity → login sukses → MainActivity
 
 MainActivity
    ├─ Detail → DetailActivity
-   └─ Logout → hapus SharedPreferences → LoginActivity
+   └─ Logout → hapus isLogin + username → LoginActivity
 ```
 
 ## Akun demo
@@ -31,9 +34,20 @@ Tidak ada database atau API. Akun di-hardcode di `LoginActivity.kt`.
 
 | Username | Password |
 |----------|----------|
-| `admin`  | `admin`  |
+| `rania`  | `greennote123` |
 
 Username dan password peka huruf besar/kecil.
+
+## Register
+
+Selain akun demo, kamu bisa membuat akun sendiri di halaman Register. Semua kolom wajib diisi, dan password harus sama dengan konfirmasinya.
+
+Akun disimpan di SharedPreferences `user_pref` dengan kunci `reg_username` dan `reg_password`, bukan di database:
+
+- Hanya satu akun yang disimpan. Mendaftar lagi akan menimpa akun sebelumnya.
+- Nama hanya diperiksa tidak kosong dan tidak ikut disimpan.
+- Akun tetap ada setelah logout, tapi hilang kalau data aplikasi dihapus.
+- Password disimpan apa adanya tanpa enkripsi, jadi jangan pakai password asli. Ini cuma untuk keperluan tugas praktikum.
 
 ## Teknologi
 
@@ -136,11 +150,12 @@ app/src/main/
 ├── AndroidManifest.xml
 ├── java/com/example/projectkelompok/
 │   ├── SplashScreenActivity.kt   # splash + routing isLogin
+│   ├── RegisterActivity.kt       # daftar akun, simpan ke SharedPreferences
 │   ├── LoginActivity.kt          # pengecekan username & password
 │   ├── MainActivity.kt           # halaman utama, Toolbar, logout
 │   └── DetailActivity.kt         # halaman detail, Toolbar + tombol back
 └── res/
-    ├── layout/                   # activity_splash_screen, activity_login, activity_main, activity_detail
+    ├── layout/                   # activity_splash_screen, activity_register, activity_login, activity_main, activity_detail
     ├── menu/main_menu.xml        # menu Logout di Toolbar
     ├── font/                     # Domine, Plus Jakarta Sans
     ├── drawable/                 # logo_green_note

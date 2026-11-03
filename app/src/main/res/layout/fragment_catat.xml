@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- ScrollView supaya form tetap bisa digeser waktu keyboard muncul -->
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- NestedScrollView supaya form panjang tetap bisa digeser waktu keyboard muncul -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scrollCatat"
@@ -9,89 +9,425 @@
     android:background="@color/green_note_background"
     tools:context=".CatatFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:letterSpacing="0.1"
+            android:text="ARSIP BOTANI • VOL. 04"
+            android:textColor="@color/green_note_primary"
+            android:textSize="10sp" />
 
         <TextView
             android:id="@+id/textJudulCatat"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/domine_bold"
-            android:text="Catat Flora Baru"
+            android:text="Lembar Baru"
             android:textColor="@color/green_note_text_primary"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="20sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutNama"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+        <!-- area foto: belum ada kamera, tombolnya cuma kasih Toast -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="2dp"
+            app:contentPadding="12dp"
+            app:strokeWidth="0dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/green_note_cream"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="24dp"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:background="@drawable/bg_circle_sand"
+                            android:contentDescription="@null"
+                            android:padding="16dp"
+                            app:srcCompat="@drawable/ic_camera"
+                            app:tint="@color/green_note_primary" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="Belum ada foto spesimen"
+                            android:textColor="@color/green_note_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAmbilFoto"
+                                style="@style/Widget.GreenNote.Button"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:text="Ambil Foto"
+                                android:textColor="@color/green_note_text_primary"
+                                android:textSize="12sp"
+                                app:backgroundTint="@color/white"
+                                app:icon="@drawable/ic_camera"
+                                app:iconGravity="textStart"
+                                app:iconSize="15dp"
+                                app:iconTint="@color/green_note_text_primary" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnPilihGaleri"
+                                style="@style/Widget.GreenNote.Button"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="8dp"
+                                android:layout_weight="1"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:text="Pilih Galeri"
+                                android:textColor="@color/green_note_text_primary"
+                                android:textSize="12sp"
+                                app:backgroundTint="@color/white"
+                                app:icon="@drawable/ic_gallery"
+                                app:iconGravity="textStart"
+                                app:iconSize="15dp"
+                                app:iconTint="@color/green_note_text_primary" />
+                    </LinearLayout>
+                </FrameLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- nama populer + nama latin -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="Nama flora"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textJudulCatat">
+            android:background="@drawable/bg_card_white"
+            android:elevation="1dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtNama"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:inputType="textCapWords" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:letterSpacing="0.05"
+                android:text="TAKSONOMI SPESIMEN"
+                android:textColor="@color/green_note_primary"
+                android:textSize="10sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutLokasi"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutNama"
+                    style="@style/Widget.GreenNote.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Nama populer / julukan">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutNamaLatin"
+                    style="@style/Widget.GreenNote.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Nama binomial latin">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtNamaLatin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textStyle="italic" />
+                </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- kategori: cuma satu yang bisa dipilih dan tidak boleh kosong -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:hint="Lokasi ditemukan"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutNama">
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtLokasi"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_weight="1"
+                android:fontFamily="@font/domine_bold"
+                android:text="Kategori Flora"
+                android:textColor="@color/green_note_text_primary"
+                android:textSize="18sp" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutDeskripsi"
-            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-            android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:text="Pilih 1 kategori"
+                android:textColor="@color/green_note_text_muted"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <!-- margin negatif + padding: chip bisa digeser sampai ke tepi layar -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="-20dp"
             android:layout_marginTop="8dp"
-            android:hint="Deskripsi singkat"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutLokasi">
+            android:scrollbars="none">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edtDeskripsi"
-                android:layout_width="match_parent"
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupKategori"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="top"
-                android:inputType="textMultiLine|textCapSentences"
-                android:minLines="3" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:paddingHorizontal="20dp"
+                app:checkedChip="@id/chipDaunHias"
+                app:chipSpacingHorizontal="8dp"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
 
-        <Button
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipDaunHias"
+                        style="@style/Widget.GreenNote.Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Daun Hias" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipBerbunga"
+                        style="@style/Widget.GreenNote.Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Berbunga" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSukulen"
+                        style="@style/Widget.GreenNote.Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sukulen" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipPohon"
+                        style="@style/Widget.GreenNote.Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pohon Rindang" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipHerbal"
+                        style="@style/Widget.GreenNote.Chip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Herbal &amp; Rambat" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- lokasi + tanggal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_rounded_sand_dark"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:letterSpacing="0.05"
+                android:text="LOKASI &amp; WAKTU TEMUAN"
+                android:textColor="@color/green_note_text_primary"
+                android:textSize="10sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutLokasi"
+                    style="@style/Widget.GreenNote.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Lokasi temuan"
+                    app:boxBackgroundColor="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtLokasi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapSentences" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutTanggal"
+                    style="@style/Widget.GreenNote.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:hint="Tanggal (contoh: 15 Feb 2025)"
+                    app:boxBackgroundColor="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtTanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- jurnal lapangan -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_white"
+            android:elevation="1dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/domine_bold"
+                    android:text="Jurnal Lapangan &amp; Kisah"
+                    android:textColor="@color/green_note_text_primary"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layoutJurnal"
+                    style="@style/Widget.GreenNote.TextInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:hint="Tuliskan kisah pengamatan hari ini...">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtJurnal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine|textCapSentences"
+                        android:gravity="top"
+                        android:minLines="4" />
+                </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <!-- jadwal perawatan -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_card_white"
+            android:elevation="1dp"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/domine_bold"
+                    android:text="Jadwal Perawatan"
+                    android:textColor="@color/green_note_text_primary"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_rounded_cream"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="12dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/plus_jakarta_sans_bold"
+                            android:text="Siklus Siram Berkala"
+                            android:textColor="@color/green_note_text_primary"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Rekomendasi: 5 hari sekali"
+                            android:textColor="@color/green_note_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switchJadwal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSimpan"
-            android:layout_width="0dp"
-            android:layout_height="55dp"
+            style="@style/Widget.GreenNote.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:fontFamily="@font/plus_jakarta_sans_bold"
-            android:text="Simpan"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDeskripsi" />
+            android:text="Simpan ke Jurnal Botani"
+            app:icon="@drawable/ic_save"
+            app:iconGravity="textStart"
+            app:iconTint="@color/white" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDraf"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="Simpan sebagai Draf Sementara"
+            android:textAllCaps="false"
+            android:textColor="@color/green_note_text_primary"
+            android:textSize="12sp" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
