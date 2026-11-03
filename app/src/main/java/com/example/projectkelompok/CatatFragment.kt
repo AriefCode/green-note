@@ -26,14 +26,24 @@ class CatatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // kamera dan galeri belum dibuat, tombolnya cuma kasih tahu user
+        binding.btnAmbilFoto.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur kamera menyusul", Toast.LENGTH_SHORT).show()
+        }
+        binding.btnPilihGaleri.setOnClickListener {
+            Toast.makeText(requireContext(), "Fitur kamera menyusul", Toast.LENGTH_SHORT).show()
+        }
+
         binding.btnSimpan.setOnClickListener {
             // 1. ambil teks dari form
             val nama = binding.edtNama.text.toString()
+            val namaLatin = binding.edtNamaLatin.text.toString()
             val lokasi = binding.edtLokasi.text.toString()
-            val deskripsi = binding.edtDeskripsi.text.toString()
+            val tanggal = binding.edtTanggal.text.toString()
+            val jurnal = binding.edtJurnal.text.toString()
 
             // 2. cek kosong
-            if (nama.isEmpty() || lokasi.isEmpty() || deskripsi.isEmpty()) {
+            if (nama.isEmpty() || namaLatin.isEmpty() || lokasi.isEmpty() || tanggal.isEmpty() || jurnal.isEmpty()) {
                 Toast.makeText(requireContext(), "Semua kolom wajib diisi", Toast.LENGTH_SHORT).show()
             } else {
                 // 3. minta konfirmasi dulu sebelum "menyimpan"
@@ -44,8 +54,12 @@ class CatatFragment : Fragment() {
                         dialog.dismiss()
                         // 4. kosongkan form + kasih tahu lewat Snackbar
                         binding.edtNama.text?.clear()
+                        binding.edtNamaLatin.text?.clear()
                         binding.edtLokasi.text?.clear()
-                        binding.edtDeskripsi.text?.clear()
+                        binding.edtTanggal.text?.clear()
+                        binding.edtJurnal.text?.clear()
+                        binding.chipGroupKategori.check(R.id.chipDaunHias)
+                        binding.switchJadwal.isChecked = false
                         Snackbar.make(binding.root, "Tersimpan (demo)", Snackbar.LENGTH_SHORT).show()
                     }
                     .setNegativeButton("Batal") { dialog, _ ->
@@ -53,6 +67,10 @@ class CatatFragment : Fragment() {
                     }
                     .show()
             }
+        }
+
+        binding.btnDraf.setOnClickListener {
+            Toast.makeText(requireContext(), "Draf disimpan (demo)", Toast.LENGTH_SHORT).show()
         }
     }
 

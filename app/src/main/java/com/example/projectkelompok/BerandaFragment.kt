@@ -6,11 +6,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SimpleAdapter
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.projectkelompok.databinding.FragmentBerandaBinding
+import com.example.projectkelompok.databinding.ItemFloraBinding
 
-// tab Beranda: isi lama MainActivity (sapaan, tombol Detail & Log Out) + ringkasan + tips
+// tab Beranda: sapaan, statistik, ajakan mencatat, temuan terakhir, dan kartu tips
 class BerandaFragment : Fragment() {
     private var _binding: FragmentBerandaBinding? = null
     private val binding get() = _binding!!
@@ -29,37 +30,57 @@ class BerandaFragment : Fragment() {
         // ambil username yang disimpan waktu login
         val sharedPref = requireContext().getSharedPreferences("user_pref", MODE_PRIVATE)
         val tampungNama = sharedPref.getString("username", "")
-        binding.namaSaya.text = "Halo, $tampungNama"
+        binding.namaSaya.text = "Halo, $tampungNama!"
 
-        // kartu ringkasan: jumlah flora diambil dari DataFlora
-        binding.textJumlahFlora.text = "${DataFlora.listFlora.size} flora tercatat"
+        // statistik dihitung dari DataFlora, bukan ditulis manual
+        val listFlora = DataFlora.listFlora
+        binding.textTotalKoleksi.text = "${listFlora.size}"
+        binding.textTotalBunga.text = "${listFlora.filter { it.kategori == "Bunga" }.size}"
 
-        binding.btnDetail.setOnClickListener {
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            startActivity(intent)
+        // pindah tab lewat fungsi bukaTab() di MainActivity
+        binding.btnMulaiCatat.setOnClickListener {
+            (requireActivity() as MainActivity).bukaTab(R.id.nav_catat)
+        }
+        binding.textLihatSemua.setOnClickListener {
+            (requireActivity() as MainActivity).bukaTab(R.id.nav_koleksi)
         }
 
-        binding.btnLogout.setOnClickListener {
-            // logout() ada di MainActivity, jadi dipanggil lewat requireActivity()
-            (requireActivity() as MainActivity).logout()
+        // kartu Tips membuka halaman TipsActivity
+        binding.cardTips.setOnClickListener {
+            startActivity(Intent(requireContext(), TipsActivity::class.java))
         }
 
-        // daftar tips: SimpleAdapter + simple_list_item_2 (judul + keterangan)
-        val listTips = listOf(
-            mapOf("title" to "Siram di pagi hari", "desc" to "Air tidak cepat menguap, akar sempat menyerap."),
-            mapOf("title" to "Cek tanah sebelum menyiram", "desc" to "Siram hanya kalau tanah 2 cm teratas terasa kering."),
-            mapOf("title" to "Putar pot seminggu sekali", "desc" to "Supaya tanaman tumbuh tegak, tidak miring ke arah cahaya."),
-            mapOf("title" to "Bersihkan debu di daun", "desc" to "Lap pakai kain lembap agar daun tetap bisa berfotosintesis."),
-            mapOf("title" to "Pakai pupuk organik", "desc" to "Kompos atau air cucian beras, cukup sebulan sekali.")
-        )
-        val adapter = SimpleAdapter(
-            requireContext(),
-            listTips,
-            android.R.layout.simple_list_item_2,
-            arrayOf("title", "desc"),
-            intArrayOf(android.R.id.text1, android.R.id.text2)
-        )
-        binding.listTips.adapter = adapter
+        // temuan terakhir: 3 flora pertama, kartunya dibuat satu per satu lewat loop
+        for (flora in listFlora.take(3)) {
+            // 1. bikin satu kartu dari item_flora.xml, belum dipasang (false)
+            val itemBinding = ItemFloraBinding.inflate(layoutInflater, binding.layoutTemuan, false)
+
+            // 2. tempel data flora ke kartu
+            itemBinding.textNama.text = flora.nama
+            itemBinding.textNamaLatin.text = flora.namaLatin
+            itemBinding.textLokasi.text = flora.lokasi
+            itemBinding.textTanggal.text = flora.tanggal
+            itemBinding.textKategori.text = flora.kategori
+            itemBinding.textKondisi.text = flora.kondisi
+            Glide.with(this).load(flora.fotoResId).into(itemBinding.imgFlora)
+
+            // 3. kartu diklik -> buka detail flora ini
+            itemBinding.root.setOnClickListener {
+                val intent = Intent(requireContext(), DetailFloraActivity::class.java)
+                intent.putExtra("nama", flora.nama)
+                intent.putExtra("namaLatin", flora.namaLatin)
+                intent.putExtra("lokasi", flora.lokasi)
+                intent.putExtra("tanggal", flora.tanggal)
+                intent.putExtra("kategori", flora.kategori)
+                intent.putExtra("fotoResId", flora.fotoResId)
+                intent.putExtra("kondisi", flora.kondisi)
+                intent.putExtra("catatan", flora.catatan)
+                startActivity(intent)
+            }
+
+            // 4. pasang kartu ke wadah di layout
+            binding.layoutTemuan.addView(itemBinding.root)
+        }
     }
 
     override fun onDestroyView() {

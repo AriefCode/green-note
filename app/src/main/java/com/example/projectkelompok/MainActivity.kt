@@ -26,8 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            // padding bawah = 0, inset bawah diurus sendiri oleh BottomNavigationView
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0)
+            // padding bawah = tinggi keyboard (0 kalau tertutup), supaya form Catat tidak ketutup
+            // inset bawah lainnya diurus sendiri oleh BottomNavigationView
+            val keyboard = insets.getInsets(WindowInsetsCompat.Type.ime())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, keyboard.bottom)
             insets
         }
 
@@ -104,7 +106,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // satu fungsi logout, dipakai menu Toolbar, BerandaFragment, dan ProfilFragment
+    // satu fungsi logout, dipakai menu Toolbar dan ProfilFragment
     // (tidak private supaya bisa dipanggil dari fragment)
     fun logout() {
         MaterialAlertDialogBuilder(this)

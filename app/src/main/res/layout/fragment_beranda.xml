@@ -1,139 +1,384 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- NestedScrollView: seluruh isi Beranda ikut digeser, makanya Temuan Terakhir bukan ListView -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/green_note_background"
-    android:padding="16dp"
     tools:context=".BerandaFragment">
 
-    <TextView
-        android:id="@+id/namaSaya"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/domine_bold"
-        android:text="Halo, rania"
-        android:textColor="@color/green_note_text_primary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="24dp">
 
-    <TextView
-        android:id="@+id/textTagline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/domine_bold"
-        android:text="“Catat setiap hijau di sekitarmu.”"
-        android:textColor="@color/green_note_primary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/namaSaya" />
+        <!-- sapaan -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-    <!-- kartu ringkasan koleksi -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardRingkasan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:cardBackgroundColor="@color/green_note_sand"
-        app:cardCornerRadius="16dp"
-        app:strokeWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTagline">
+            <View
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:background="@drawable/bg_circle_primary" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:letterSpacing="0.1"
+                android:text="ARSIP BOTANI PERSONAL"
+                android:textColor="@color/green_note_primary"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/namaSaya"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/domine_bold"
+            android:text="Halo, rania!"
+            android:textColor="@color/green_note_text_primary"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="4dp"
+            android:text="Hari yang cerah untuk mengamati dedaunan dan menyapa tunas baru."
+            android:textColor="@color/green_note_text_secondary"
+            android:textSize="14sp" />
+
+        <!-- kartu statistik: angkanya dihitung di BerandaFragment -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_card_white"
+            android:elevation="1dp"
+            android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/imgLogo"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:contentDescription="Logo Green Note"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo_green_note" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_cream"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:letterSpacing="0.05"
+                        android:text="TOTAL KOLEKSI"
+                        android:textColor="@color/green_note_text_secondary"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textTotalKoleksi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/domine_bold"
+                            android:text="0"
+                            android:textColor="@color/green_note_text_primary"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="spesimen"
+                            android:textColor="@color/green_note_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:text="Tersimpan di jurnal"
+                        android:textColor="@color/green_note_primary"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_rounded_cream"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:letterSpacing="0.05"
+                        android:text="MEKAR INDAH"
+                        android:textColor="@color/green_note_text_secondary"
+                        android:textSize="10sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textTotalBunga"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/domine_bold"
+                            android:text="0"
+                            android:textColor="@color/green_note_text_primary"
+                            android:textSize="24sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:text="berbunga"
+                            android:textColor="@color/green_note_text_secondary"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/plus_jakarta_sans_bold"
+                        android:text="Aktif bermekaran"
+                        android:textColor="@color/green_note_khaki"
+                        android:textSize="10sp" />
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/textLabelKoleksi"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Koleksi Botani"
-                android:textColor="@color/green_note_text_secondary"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLogo"
-                app:layout_constraintTop_toTopOf="@+id/imgLogo" />
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_rounded_sand_dark"
+                android:lineSpacingExtra="3dp"
+                android:padding="12dp"
+                android:text="Kilas Botani: Bunga Sepatu mekar sempurna di bawah sinar pagi hari pertama dan menyerap embun segar."
+                android:textColor="@color/green_note_text_ink"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- kartu ajakan ke tab Catat -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_card_dark"
+            android:elevation="2dp"
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/textJumlahFlora"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:letterSpacing="0.05"
+                android:text="DOKUMENTASI LAPANGAN"
+                android:textColor="@color/green_note_peach"
+                android:textSize="10sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/domine_bold"
-                android:text="6 flora tercatat"
-                android:textColor="@color/green_note_secondary"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imgLogo"
-                app:layout_constraintTop_toBottomOf="@+id/textLabelKoleksi" />
+                android:text="Temukan Tanaman Baru?"
+                android:textColor="@color/green_note_peach"
+                android:textSize="20sp" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:alpha="0.8"
+                android:text="Abadikan foto, sematkan taksonomi, dan catat kisah uniknya ke dalam jurnal hidupmu."
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
-    <!-- tombol lama dari MainActivity -->
-    <Button
-        android:id="@+id/btnDetail"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="6dp"
-        android:fontFamily="@font/plus_jakarta_sans_bold"
-        android:text="Detail"
-        app:layout_constraintEnd_toStartOf="@+id/btnLogout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardRingkasan" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnMulaiCatat"
+                style="@style/Widget.GreenNote.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Mulai Catat Spesimen"
+                app:icon="@drawable/ic_camera"
+                app:iconGravity="textStart"
+                app:iconTint="@color/white" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnLogout"
-        style="@style/Widget.Material3.Button.OutlinedButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="6dp"
-        android:fontFamily="@font/plus_jakarta_sans_bold"
-        android:text="Log Out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnDetail"
-        app:layout_constraintTop_toTopOf="@+id/btnDetail" />
+        <!-- judul Temuan Terakhir + link ke Koleksi -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="24dp"
+            android:gravity="bottom"
+            android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textJudulTips"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/domine_bold"
-        android:text="Tips Perawatan"
-        android:textColor="@color/green_note_text_primary"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDetail" />
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-    <!-- ListView mengisi sisa layar (tinggi 0dp = ikut constraint) -->
-    <ListView
-        android:id="@+id/listTips"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textJudulTips" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:letterSpacing="0.1"
+                    android:text="KATALOG HARIAN"
+                    android:textColor="@color/green_note_primary"
+                    android:textSize="10sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/domine_bold"
+                    android:text="Temuan Terakhir"
+                    android:textColor="@color/green_note_text_primary"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textLihatSemua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:padding="4dp"
+                android:text="Lihat Semua"
+                android:textColor="@color/green_note_primary"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <!-- wadah kosong, kartu flora ditambahkan dari Kotlin lewat addView -->
+        <LinearLayout
+            android:id="@+id/layoutTemuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- kartu Tips: seluruh kartu bisa diklik -->
+        <LinearLayout
+            android:id="@+id/cardTips"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_card_sand"
+            android:clickable="true"
+            android:elevation="1dp"
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_water"
+                    app:tint="@color/green_note_primary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:letterSpacing="0.1"
+                    android:text="JURNAL MUSIM INI"
+                    android:textColor="@color/green_note_primary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/domine_bold"
+                android:text="Musim Hujan: Waktu Terbaik Merawat Tunas Baru"
+                android:textColor="@color/green_note_text_primary"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:lineSpacingExtra="3dp"
+                android:text="Kelembapan tinggi mempercepat perakaran stek dan taji daun baru. Kurangi interval siram manual untuk mencegah busuk akar pada aroid kesayangan."
+                android:textColor="@color/green_note_text_secondary"
+                android:textSize="12sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/bg_circle_primary" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="Tips Perawatan"
+                    android:textColor="@color/green_note_text_ink"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="Baca Catatan →"
+                    android:textColor="@color/green_note_text_primary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
