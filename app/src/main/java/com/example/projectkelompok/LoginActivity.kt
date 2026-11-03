@@ -2,6 +2,7 @@ package com.example.projectkelompok
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -18,49 +19,67 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 //        setContentView(R.layout.activity_login)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            // ime() = tinggi keyboard, supaya kolom tidak ketutup
+            val bars = insets.getInsets(WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.ime())
+            v.setPadding(bars.left, bars.top, bars.right, bars.bottom)
             insets
         }
 
         // akun demo, di-hardcode karena tidak pakai database / API
-        val akunUsername = "admin"
-        val akunPassword = "admin"
+        val akunUsername = "rania"
+        val akunPassword = "greennote123"
 
         binding.btnSubmit.setOnClickListener {
             // 1. ambil teks yang diketik user
             val user = binding.formUsr.text.toString()
             val pass = binding.formPw.text.toString()
 
-            var loginBerhasil = false
-            // 2. cek apakah username & password cocok dengan akun demo
-            if (akunUsername == user && akunPassword == pass){
-                loginBerhasil = true
-            }
-
-
-            if (loginBerhasil) {
-                // 3. simpan status login + username ke SharedPreferences
-                val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
-                val editor = sharedPref.edit()
-                editor.putBoolean("isLogin", true)
-                editor.putString("username", user)
-                editor.apply()
-
-                // 4. pindah ke MainActivity, finish() supaya tombol back tidak balik ke Login
-                val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+            if (user.isEmpty() || pass.isEmpty()) {
+                // 2. ada kolom kosong -> kasih tahu user, tidak perlu cek akun
+                Toast.makeText(this, "Username dan password wajib diisi", Toast.LENGTH_SHORT).show()
             } else {
-                // login gagal -> kasih tahu user lewat dialog
-                AlertDialog.Builder(this)
-                    .setTitle("Login Gagal")
-                    .setMessage("Username atau password salah.")
-                    .setPositiveButton("OK"){ dialog, _ ->
-                        dialog.dismiss()
-                    }
-                    .show()
+                val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+
+                var loginBerhasil = false
+                // 3. cek apakah username & password cocok dengan akun demo
+                if (akunUsername == user && akunPassword == pass){
+                    loginBerhasil = true
+                }
+
+                // 3b. cek juga akun hasil Register yang disimpan di SharedPreferences
+                val regUsername = sharedPref.getString("reg_username", "")
+                val regPassword = sharedPref.getString("reg_password", "")
+                if (regUsername == user && regPassword == pass) {
+                    loginBerhasil = true
+                }
+                if (loginBerhasil) {
+                    // 4. simpan status login + username ke SharedPreferences
+                    val editor = sharedPref.edit()
+                    editor.putBoolean("isLogin", true)
+                    editor.putString("username", user)
+                    editor.apply()
+
+                    // 5. pindah ke MainActivity, finish() supaya tombol back tidak balik ke Login
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    // login gagal -> kasih tahu user lewat dialog
+                    AlertDialog.Builder(this)
+                        .setTitle("Login Gagal")
+                        .setMessage("Username atau password salah.")
+                        .setPositiveButton("OK"){ dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .show()
+                }
             }
+        }
+
+        // belum punya akun -> ke Register, finish() supaya Login tidak menumpuk
+        binding.textKeRegister.setOnClickListener {
+            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            finish()
         }
     }
 }
