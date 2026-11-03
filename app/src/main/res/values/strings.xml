@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Green Note</string>
+    <!-- tag <u> membuat teks bergaris bawah -->
+    <string name="link_masuk"><u>Masuk</u></string>
 </resources>
