@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Latar chip kategori: ungu tua kalau dipilih, krem kalau tidak -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/green_note_secondary" android:state_checked="true" />
+    <item android:color="@color/green_note_cream" />
+</selector>

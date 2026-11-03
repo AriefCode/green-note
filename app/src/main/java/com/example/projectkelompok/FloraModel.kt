@@ -7,5 +7,7 @@ data class FloraModel(
     val lokasi: String,
     val tanggal: String,
     val kategori: String,
-    val fotoResId: Int
+    val fotoResId: Int,
+    val kondisi: String,
+    val catatan: String
 )

@@ -10,4 +10,15 @@
     <color name="green_note_sand">#FAEDD1</color>
     <color name="green_note_text_primary">#20012B</color>
     <color name="green_note_text_secondary">#4C444D</color>
+
+    <!-- Warna pendukung dari frame Figma lainnya -->
+    <color name="green_note_sand_dark">#F4E7CC</color>
+    <color name="green_note_cream">#FFF2D9</color>
+    <color name="green_note_sand_muted">#EEE1C6</color>
+    <color name="green_note_peach">#FFDBCD</color>
+    <color name="green_note_orange">#FD8953</color>
+    <color name="green_note_khaki">#998B70</color>
+    <color name="green_note_text_muted">#7E747D</color>
+    <color name="green_note_text_ink">#211B0A</color>
+    <color name="green_note_danger">#BA1A1A</color>
 </resources>
