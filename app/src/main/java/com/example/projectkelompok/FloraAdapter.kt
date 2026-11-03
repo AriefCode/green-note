@@ -26,6 +26,7 @@ class FloraAdapter(context: Context, private val items: List<FloraModel>) :
         binding.textLokasi.text = data.lokasi
         binding.textTanggal.text = data.tanggal
         binding.textKategori.text = data.kategori
+        binding.textKondisi.text = data.kondisi
 
         Glide.with(context).load(data.fotoResId).into(binding.imgFlora)
 
