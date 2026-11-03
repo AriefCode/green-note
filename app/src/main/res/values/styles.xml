@@ -49,4 +49,22 @@
     <style name="Widget.GreenNote.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="android:color">@android:color/transparent</item>
     </style>
+
+    <!-- Chip kategori: warnanya dari res/color/chip_*.xml, tanpa ikon centang -->
+    <style name="TextAppearance.GreenNote.Chip" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Widget.GreenNote.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="android:textAppearance">@style/TextAppearance.GreenNote.Chip</item>
+        <item name="chipCornerRadius">18dp</item>
+        <item name="chipMinHeight">36dp</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="ensureMinTouchTargetSize">false</item>
+    </style>
 </resources>

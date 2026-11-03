@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- tampilan SATU baris di ListView Koleksi (dipakai FloraAdapter) -->
+<!-- tampilan SATU kartu flora (dipakai FloraAdapter di Koleksi) -->
 <!-- FrameLayout luar dipakai sebagai jarak antar kartu, karena margin item ListView diabaikan -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="16dp"
-    android:paddingVertical="8dp">
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="12dp">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -16,92 +16,180 @@
         app:cardElevation="1dp"
         app:strokeWidth="0dp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:padding="16dp">
 
-            <TextView
-                android:id="@+id/textKategori"
-                android:layout_width="wrap_content"
+            <!-- baris badge: kategori + kondisi -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/green_note_sand"
-                android:fontFamily="@font/plus_jakarta_sans_bold"
-                android:paddingHorizontal="8dp"
-                android:paddingVertical="2dp"
-                android:text="Kategori"
-                android:textAllCaps="true"
-                android:textColor="@color/green_note_secondary"
-                android:textSize="10sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imgFlora"
-                android:layout_width="0dp"
-                android:layout_height="180dp"
+                <TextView
+                    android:id="@+id/textKategori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_rounded_sand_dark"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:letterSpacing="0.05"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="Kategori"
+                    android:textAllCaps="true"
+                    android:textColor="@color/green_note_secondary"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/textKondisi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_pill_peach"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="Kondisi"
+                    android:textColor="@color/green_note_primary"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <!-- MaterialCardView dipakai untuk membuat sudut foto jadi bulat -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:background="@color/green_note_sand"
-                android:contentDescription="Foto flora"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textKategori" />
+                app:cardBackgroundColor="@color/green_note_sand_dark"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:id="@+id/imgFlora"
+                    android:layout_width="match_parent"
+                    android:layout_height="238dp"
+                    android:contentDescription="Foto flora"
+                    android:scaleType="centerCrop" />
+            </com.google.android.material.card.MaterialCardView>
 
             <TextView
                 android:id="@+id/textNama"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="14dp"
                 android:fontFamily="@font/domine_bold"
                 android:text="Nama Flora"
                 android:textColor="@color/green_note_text_primary"
-                android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imgFlora" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/textNamaLatin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
                 android:text="Nama latin"
                 android:textColor="@color/green_note_primary"
                 android:textSize="12sp"
-                android:textStyle="italic"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNama" />
+                android:textStyle="italic" />
 
-            <TextView
-                android:id="@+id/textLokasi"
-                android:layout_width="0dp"
+            <!-- kapsul lokasi + tanggal -->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="4dp"
-                android:background="@color/green_note_sand"
-                android:padding="10dp"
-                android:text="Lokasi"
-                android:textColor="@color/green_note_text_primary"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/textTanggal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textNamaLatin" />
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_rounded_cream"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:padding="10dp">
 
-            <TextView
-                android:id="@+id/textTanggal"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:background="@color/green_note_sand"
-                android:padding="10dp"
-                android:text="Tanggal"
-                android:textColor="@color/green_note_text_primary"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textLokasi"
-                app:layout_constraintTop_toTopOf="@+id/textLokasi" />
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_location"
+                            app:tint="@color/green_note_primary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="0.05"
+                                android:text="LOKASI"
+                                android:textColor="@color/green_note_text_muted"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/textLokasi"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/plus_jakarta_sans_bold"
+                                android:maxLines="1"
+                                android:text="Lokasi"
+                                android:textColor="@color/green_note_text_ink"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            app:srcCompat="@drawable/ic_calendar"
+                            app:tint="@color/green_note_primary" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:letterSpacing="0.05"
+                                android:text="ARSIP"
+                                android:textColor="@color/green_note_text_muted"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/textTanggal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="end"
+                                android:fontFamily="@font/plus_jakarta_sans_bold"
+                                android:maxLines="1"
+                                android:text="Tanggal"
+                                android:textColor="@color/green_note_text_ink"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

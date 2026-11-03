@@ -11,38 +11,139 @@
         android:id="@+id/textJudulKoleksi"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
         android:fontFamily="@font/domine_bold"
         android:text="Koleksi Botani"
         android:textColor="@color/green_note_text_primary"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/textJumlah"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textSubKoleksi"
+        android:id="@+id/textJumlah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_pill_sand"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="4dp"
+        android:text="6 Spesimen"
+        android:textColor="@color/green_note_primary"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textJudulKoleksi"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textJudulKoleksi" />
+
+    <!-- kolom cari: tampilan saja, belum ada fungsi pencarian -->
+    <LinearLayout
+        android:id="@+id/layoutCari"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="Katalog lembaran hijau dan catatan observasi lapangan pribadimu."
-        android:textColor="@color/green_note_text_secondary"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_rounded_white"
+        android:elevation="1dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textJudulKoleksi" />
+        app:layout_constraintTop_toBottomOf="@+id/textJudulKoleksi">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_search"
+            app:tint="@color/green_note_text_muted" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Cari nama, binomial, atau lokasi..."
+            android:textColor="@color/green_note_text_muted"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- chip bisa digeser ke samping seperti di Figma -->
+    <HorizontalScrollView
+        android:id="@+id/scrollChip"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutCari">
+
+        <!-- singleSelection: cuma satu chip aktif, selectionRequired: tidak bisa kosong -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupKategori"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="20dp"
+            app:checkedChip="@id/chipSemua"
+            app:chipSpacingHorizontal="8dp"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSemua"
+                    style="@style/Widget.GreenNote.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Semua" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipHias"
+                    style="@style/Widget.GreenNote.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanaman Hias" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipBunga"
+                    style="@style/Widget.GreenNote.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bunga" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipObat"
+                    style="@style/Widget.GreenNote.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanaman Obat" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPohon"
+                    style="@style/Widget.GreenNote.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pohon" />
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
 
     <!-- divider dimatikan, jarak antar kartu diatur di item_flora.xml -->
     <ListView
         android:id="@+id/listFlora"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:divider="@null"
         android:dividerHeight="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSubKoleksi" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollChip" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
