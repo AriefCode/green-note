@@ -23,4 +23,30 @@
         <item name="android:paddingBottom">14dp</item>
         <item name="cornerRadius">28dp</item>
     </style>
+
+    <!-- Teks Toolbar: judul Domine, subjudul kecil terakota (ikut header Figma) -->
+    <style name="TextAppearance.GreenNote.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/domine_bold</item>
+        <item name="fontFamily">@font/domine_bold</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.GreenNote.ToolbarSubtitle" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:letterSpacing">0.1</item>
+    </style>
+
+    <!-- Label bottom nav: 10sp tebal seperti Figma -->
+    <style name="TextAppearance.GreenNote.NavLabel" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="fontFamily">@font/plus_jakarta_sans_bold</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- Pill di belakang ikon aktif dibuat transparan, Figma cuma mengganti warna -->
+    <style name="Widget.GreenNote.NavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@android:color/transparent</item>
+    </style>
 </resources>

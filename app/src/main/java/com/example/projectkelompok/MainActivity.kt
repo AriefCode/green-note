@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         // pasang Toolbar sebagai action bar
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "Beranda"
-            subtitle = "Catatan flora di sekitarmu"
+            title = "Green Note"
+            subtitle = "BERANDA"
         }
 
         // fragment awal hanya dipasang sekali (bukan setiap layar diputar)
@@ -67,12 +67,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // ganti isi fragmentContainer dengan fragment baru + ganti judul Toolbar
+    // ganti isi fragmentContainer dengan fragment baru + ganti subjudul Toolbar
     private fun replaceFragment(fragment: Fragment, judul: String) {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, fragment)
             .commit()
-        supportActionBar?.title = judul
+        supportActionBar?.subtitle = judul.uppercase()
+    }
+
+    // pindah tab dari fragment, listener bottom nav ikut terpanggil dan mengganti fragment
+    fun bukaTab(idTab: Int) {
+        binding.bottomNavView.selectedItemId = idTab
+    }
+
+    // setelah layar diputar, tab aktif baru pulih di sini, jadi subjudulnya disamakan lagi
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        val tabAktif = binding.bottomNavView.menu.findItem(binding.bottomNavView.selectedItemId)
+        supportActionBar?.subtitle = tabAktif.title.toString().uppercase()
     }
 
     // tampilkan menu (titik tiga) di Toolbar
