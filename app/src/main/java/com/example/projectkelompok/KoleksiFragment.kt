@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.projectkelompok.databinding.FragmentKoleksiBinding
+import com.google.android.material.chip.Chip
 
 // tab Koleksi: daftar flora pakai ListView + custom adapter (FloraAdapter), bisa difilter per kategori
 class KoleksiFragment : Fragment() {
@@ -39,9 +41,16 @@ class KoleksiFragment : Fragment() {
         binding.chipPohon.text = "Pohon (${listFlora.filter { it.kategori == "Pohon" }.size})"
 
         // dipanggil setiap kali chip yang aktif berganti
-        binding.chipGroupKategori.setOnCheckedStateChangeListener { _, checkedIds ->
-            // 1. ambil id chip yang aktif, lalu saring data sesuai kategorinya
-            listTampil = when (checkedIds.firstOrNull()) {
+        binding.chipGroupKategori.setOnCheckedStateChangeListener { group, checkedIds ->
+            val selectedChipId = checkedIds.firstOrNull() // ambil id chip yang dipilih
+            if (selectedChipId != null) {
+                // cari Chip-nya lewat id, lalu tampilkan teksnya (pola praktikum P9)
+                val chip = group.findViewById<Chip>(selectedChipId)
+                Toast.makeText(requireContext(), "Filter: ${chip.text}", Toast.LENGTH_SHORT).show()
+            }
+
+            // 1. saring data sesuai kategori chip yang dipilih
+            listTampil = when (selectedChipId) {
                 R.id.chipHias -> listFlora.filter { it.kategori == "Tanaman Hias" }
                 R.id.chipBunga -> listFlora.filter { it.kategori == "Bunga" }
                 R.id.chipObat -> listFlora.filter { it.kategori == "Tanaman Obat" }

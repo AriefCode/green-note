@@ -38,8 +38,8 @@ class SplashScreenActivity : AppCompatActivity() {
                 // sudah login -> langsung ke halaman utama
                 startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
             } else {
-                // belum login -> ke halaman Selamat Datang
-                startActivity(Intent(this@SplashScreenActivity, WelcomeActivity::class.java))
+                // belum login -> ke tutorial dulu
+                startActivity(Intent(this@SplashScreenActivity, TutorialActivity::class.java))
             }
 
             // tutup splash supaya tombol back tidak balik ke sini

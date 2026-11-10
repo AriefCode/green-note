@@ -24,6 +24,9 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".TutorialActivity"
+            android:exported="false" />
+        <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity

@@ -12,43 +12,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="16dp"
         android:paddingBottom="24dp">
 
-        <!-- sapaan -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <View
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:background="@drawable/bg_circle_primary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:fontFamily="@font/plus_jakarta_sans_bold"
-                android:letterSpacing="0.1"
-                android:text="ARSIP BOTANI PERSONAL"
-                android:textColor="@color/green_note_primary"
-                android:textSize="10sp" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/namaSaya"
+        <!-- header wave (P10): FrameLayout menumpuk anak-anaknya, jadi teks sapaan duduk DI ATAS gambar wave -->
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/domine_bold"
-            android:text="Halo, rania!"
-            android:textColor="@color/green_note_text_primary"
-            android:textSize="30sp" />
+            android:layout_height="wrap_content">
+
+            <!-- lapisan bawah: background gelombang, tinggi 180dp seperti praktikum -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/bg_header_wave" />
+
+            <!-- lapisan atas: sapaan + tagline, warna terang supaya kebaca di atas terakota -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="28dp">
+
+                <TextView
+                    android:id="@+id/namaSaya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/domine_bold"
+                    android:text="Halo, rania!"
+                    android:textColor="@color/white"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/domine_bold"
+                    android:text="Catat setiap hijau di sekitarmu."
+                    android:textColor="@color/green_note_sand"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -58,6 +61,69 @@
             android:text="Hari yang cerah untuk mengamati dedaunan dan menyapa tunas baru."
             android:textColor="@color/green_note_text_secondary"
             android:textSize="14sp" />
+
+        <!-- Jelajah Kategori (P10): GridLayout 2 kolom berisi 4 tombol -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/domine_bold"
+            android:text="Jelajah Kategori"
+            android:textColor="@color/green_note_text_primary"
+            android:textSize="20sp" />
+
+        <!-- columnCount=2: anak ke-3 otomatis turun ke baris kedua; useDefaultMargins: jarak antar tombol otomatis -->
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
+            app:columnCount="2"
+            app:useDefaultMargins="true">
+
+            <!-- columnWeight=1 + fill_horizontal: dua kolom dibagi rata selebar layar -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKategoriHias"
+                style="@style/Widget.GreenNote.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tanaman Hias"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal" />
+
+            <!-- versi krem: warna latar & teks ditimpa -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKategoriBunga"
+                style="@style/Widget.GreenNote.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_note_sand"
+                android:text="Bunga"
+                android:textColor="@color/green_note_primary"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKategoriPohon"
+                style="@style/Widget.GreenNote.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green_note_sand"
+                android:text="Pohon"
+                android:textColor="@color/green_note_primary"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnKategoriObat"
+                style="@style/Widget.GreenNote.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Tanaman Obat"
+                app:layout_columnWeight="1"
+                app:layout_gravity="fill_horizontal" />
+        </androidx.gridlayout.widget.GridLayout>
 
         <!-- kartu statistik: angkanya dihitung di BerandaFragment -->
         <LinearLayout

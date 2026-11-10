@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.projectkelompok.databinding.FragmentBerandaBinding
@@ -43,6 +44,20 @@ class BerandaFragment : Fragment() {
         }
         binding.textLihatSemua.setOnClickListener {
             (requireActivity() as MainActivity).bukaTab(R.id.nav_koleksi)
+        }
+
+        // tombol Jelajah Kategori (GridLayout): cukup tampilkan Toast nama kategori
+        binding.btnKategoriHias.setOnClickListener {
+            Toast.makeText(requireContext(), "Kategori: Tanaman Hias", Toast.LENGTH_SHORT).show()
+        }
+        binding.btnKategoriBunga.setOnClickListener {
+            Toast.makeText(requireContext(), "Kategori: Bunga", Toast.LENGTH_SHORT).show()
+        }
+        binding.btnKategoriPohon.setOnClickListener {
+            Toast.makeText(requireContext(), "Kategori: Pohon", Toast.LENGTH_SHORT).show()
+        }
+        binding.btnKategoriObat.setOnClickListener {
+            Toast.makeText(requireContext(), "Kategori: Tanaman Obat", Toast.LENGTH_SHORT).show()
         }
 
         // kartu Tips membuka halaman TipsActivity

@@ -21,4 +21,8 @@
     <color name="green_note_text_muted">#7E747D</color>
     <color name="green_note_text_ink">#211B0A</color>
     <color name="green_note_danger">#BA1A1A</color>
+
+    <!-- Pertemuan 10: lapis terang header wave + titik DotsIndicator yang belum aktif -->
+    <color name="green_note_wave_light">#B9582A</color>
+    <color name="green_note_dot">#CBB9A8</color>
 </resources>

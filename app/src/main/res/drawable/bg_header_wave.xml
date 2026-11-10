@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Header bergelombang Green Note: 3 lapis gelombang + garis kilau + titik "serbuk sari" ala logo.
+     Dipakai sebagai background View di bagian atas layar (tinggi disarankan 180dp). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="412dp"
+    android:height="180dp"
+    android:viewportWidth="412"
+    android:viewportHeight="180">
+
+    <!-- Lapis 1 (paling belakang): ungu tua, cuma ngintip di tepi bawah -->
+    <path
+        android:fillColor="@color/green_note_secondary"
+        android:pathData="M0,0 L412,0 L412,146 C372,170 330,172 286,156 C236,138 196,150 152,164 C104,178 52,176 0,158 Z" />
+
+    <!-- Lapis 2: terakota utama -->
+    <path
+        android:fillColor="@color/green_note_primary"
+        android:pathData="M0,0 L412,0 L412,128 C380,150 340,154 298,140 C250,124 210,132 166,146 C116,162 58,160 0,138 Z" />
+
+    <!-- Lapis 3: terakota terang di bagian atas, biar ada kesan gradasi -->
+    <path
+        android:fillColor="@color/green_note_wave_light"
+        android:fillAlpha="0.55"
+        android:pathData="M0,0 L412,0 L412,70 C340,96 260,58 180,80 C110,100 60,108 0,92 Z" />
+
+    <!-- Garis kilau krem mengikuti tepi gelombang terakota -->
+    <path
+        android:strokeColor="@color/green_note_sand"
+        android:strokeAlpha="0.5"
+        android:strokeWidth="2"
+        android:fillColor="#00000000"
+        android:pathData="M0,138 C58,160 116,162 166,146 C210,132 250,124 298,140 C340,154 380,150 412,128" />
+
+    <!-- Titik-titik serbuk sari (krem transparan) -->
+    <path
+        android:fillColor="@color/green_note_sand"
+        android:fillAlpha="0.45"
+        android:pathData="M345,38 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 Z M374.5,62 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0 Z M315,24 a3,3 0 1,0 6,0 a3,3 0 1,0 -6,0 Z M389.5,26 a2.5,2.5 0 1,0 5,0 a2.5,2.5 0 1,0 -5,0 Z M298,60 a2,2 0 1,0 4,0 a2,2 0 1,0 -4,0 Z" />
+</vector>
