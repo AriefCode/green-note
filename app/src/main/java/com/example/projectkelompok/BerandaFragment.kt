@@ -60,6 +60,11 @@ class BerandaFragment : Fragment() {
             Toast.makeText(requireContext(), "Kategori: Tanaman Obat", Toast.LENGTH_SHORT).show()
         }
 
+        // tombol Ensiklopedia membuka halaman TabLayout + RecyclerView
+        binding.btnEnsiklopedia.setOnClickListener {
+            startActivity(Intent(requireContext(), EnsiklopediaActivity::class.java))
+        }
+
         // kartu Tips membuka halaman TipsActivity
         binding.cardTips.setOnClickListener {
             startActivity(Intent(requireContext(), TipsActivity::class.java))

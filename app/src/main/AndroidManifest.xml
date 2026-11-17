@@ -50,6 +50,9 @@
         <activity
             android:name=".WebViewActivity"
             android:exported="false" />
+        <activity
+            android:name=".EnsiklopediaActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

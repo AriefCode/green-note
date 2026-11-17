@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Warna ikon tab: terakota kalau tab dipilih, abu kalau tidak.
+     Beda dengan bottom_nav_item.xml: TabLayout pakai state_selected, bukan state_checked -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="@color/green_note_primary" android:state_selected="true" />
+    <item android:color="@color/green_note_text_secondary" />
+</selector>

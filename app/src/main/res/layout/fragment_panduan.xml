@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tab Panduan: teks statis saja, tidak ada logika di Kotlin (pola fragment_tab_a.xml) -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_note_background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/domine_bold"
+            android:text="Panduan Memotret &amp; Mencatat Flora"
+            android:textColor="@color/green_note_text_primary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="1. Cari cahaya alami"
+            android:textColor="@color/green_note_primary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Memotret pagi atau sore hari, hindari flash supaya warna daun dan bunga tetap asli."
+            android:textColor="@color/green_note_text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="2. Foto beberapa bagian"
+            android:textColor="@color/green_note_primary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Ambil foto daun, bunga, batang, dan tanaman utuh. Semakin lengkap, semakin mudah dikenali."
+            android:textColor="@color/green_note_text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="3. Catat lokasi dan tanggal"
+            android:textColor="@color/green_note_primary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Tulis di mana dan kapan tanaman ditemukan, supaya bisa dibandingkan di kunjungan berikutnya."
+            android:textColor="@color/green_note_text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="4. Jangan memetik sembarangan"
+            android:textColor="@color/green_note_primary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Cukup dipotret. Beberapa flora seperti Padma Raksasa dan Kantong Semar dilindungi undang-undang."
+            android:textColor="@color/green_note_text_secondary"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="Foto: Wikimedia Commons"
+            android:textColor="@color/green_note_text_muted"
+            android:textSize="12sp"
+            android:textStyle="italic" />
+    </LinearLayout>
+</ScrollView>
