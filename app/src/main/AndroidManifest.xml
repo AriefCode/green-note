@@ -53,6 +53,9 @@
         <activity
             android:name=".EnsiklopediaActivity"
             android:exported="false" />
+        <activity
+            android:name=".JurnalBotaniActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

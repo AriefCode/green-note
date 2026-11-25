@@ -39,7 +39,7 @@ class ProfilFragment : Fragment() {
         binding.textTotalKoleksi.text = "${listFlora.size}"
         binding.textTotalBunga.text = "${listFlora.filter { it.kategori == "Bunga" }.size}"
 
-        val listMenu = listOf("Tips Perawatan", "Tentang Green Note", "Bantuan", "Logout")
+        val listMenu = listOf("Jurnal Botani Saya", "Tips Perawatan", "Tentang Green Note", "Bantuan", "Logout")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, listMenu)
         binding.listMenuProfil.adapter = adapter
 
@@ -47,9 +47,13 @@ class ProfilFragment : Fragment() {
         binding.listMenuProfil.setOnItemClickListener { _, _, position, _ ->
             when (position) {
                 0 -> {
-                    startActivity(Intent(requireContext(), TipsActivity::class.java))
+                    // P12: daftar catatan dari Room
+                    startActivity(Intent(requireContext(), JurnalBotaniActivity::class.java))
                 }
                 1 -> {
+                    startActivity(Intent(requireContext(), TipsActivity::class.java))
+                }
+                2 -> {
                     AlertDialog.Builder(requireContext())
                         .setTitle("Tentang Green Note")
                         .setMessage("Green Note: aplikasi untuk mencatat flora di sekitarmu.\n“Catat setiap hijau di sekitarmu.”")
@@ -58,10 +62,10 @@ class ProfilFragment : Fragment() {
                         }
                         .show()
                 }
-                2 -> {
+                3 -> {
                     Toast.makeText(requireContext(), "Pilih tab Catat untuk menambah flora baru", Toast.LENGTH_SHORT).show()
                 }
-                3 -> {
+                4 -> {
                     (requireActivity() as MainActivity).logout()
                 }
             }

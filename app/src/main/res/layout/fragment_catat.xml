@@ -429,5 +429,20 @@
             android:textAllCaps="false"
             android:textColor="@color/green_note_text_primary"
             android:textSize="12sp" />
+
+        <!-- Pertemuan 12: buka daftar catatan yang tersimpan di Room -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLihatJurnal"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="Lihat Jurnal Botani Saya"
+            android:textAllCaps="false"
+            android:textColor="@color/green_note_primary"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_book"
+            app:iconGravity="textStart"
+            app:iconTint="@color/green_note_primary" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

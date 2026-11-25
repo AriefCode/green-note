@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -48,6 +49,11 @@ dependencies {
     implementation("com.tbuonomo:dotsindicator:5.1.0")     // DotsIndicator
     //nambah lagi
     implementation("androidx.recyclerview:recyclerview:1.3.2") // RecyclerView
+    //room database
+    val roomVersion = "2.8.4"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    ksp("androidx.room:room-compiler:$roomVersion")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
